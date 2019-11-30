@@ -23,12 +23,45 @@
         android:text="+"
         />
     </LinearLayout>
-    <TextView
-        android:id="@+id/tx_record"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text=""
-        android:layout_weight="5"
-        />
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            android:padding="10.0dip">
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_one"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dip"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="5dip">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/et_content1"-->
+<!--                    android:layout_width="800px"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="2018"-->
+<!--                    android:textSize="19sp" />-->
+<!--                <Button-->
+<!--                    android:id="@+id/btn_del1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="删除"-->
+<!--                    />-->
+
+
+<!--            </LinearLayout>-->
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

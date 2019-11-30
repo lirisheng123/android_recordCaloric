@@ -2,19 +2,8 @@ package com.example.homework2
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import org.jetbrains.anko.db.*
-import java.sql.Types.VARCHAR
 
-//class test() : SQLiteOpenHelper() {
-////    override fun onCreate(db: SQLiteDatabase?) {
-////        val CREATE_TABLE = "CREATE TABLE $TABLE_NAME ($ID Integer PRIMARY KEY, $FIRST_NAME TEXT, $LAST_NAME TEXT)"
-////        db?.execSQL(CREATE_TABLE)
-////    }
-//}
-//fun main(args:Array<String>){
-//
-//}
 class MySqlHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "mydb") {
 
     companion object {
@@ -30,8 +19,8 @@ class MySqlHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "mydb") {
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.createTable("Customer1", true,
-//            "id" to INTEGER+ PRIMARY_KEY,
+        db.createTable("Customer2", true,
+            "id" to INTEGER+ PRIMARY_KEY+ AUTOINCREMENT,
             "year" to INTEGER,
             "month" to INTEGER,
             "day" to INTEGER,
