@@ -46,7 +46,6 @@ class ThridActivity:AppCompatActivity(){
             println("month :"+month1)
             println("day :"+day1)
             //把获取到的数据写入数据库
-
             var result=database.use {
                 insert("Customer2",
                    "year" to year1,
@@ -57,6 +56,7 @@ class ThridActivity:AppCompatActivity(){
            }
             val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
+            //销毁该页，就是不保存该页面在栈中（等同于手机的返回键）
             finish()
         }
 

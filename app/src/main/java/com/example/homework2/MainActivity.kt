@@ -31,26 +31,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //设置加载的展示页面
         setContentView(R.layout.activity_main)
         println("进入主页面")
 
+        //设置点击事件，会后面重写的onClick（）函数
         btn_edit.setOnClickListener(this)
 
+        //点击该按钮，弹出一个日期选择器
         btn_begin.setOnClickListener {
             val c = Calendar.getInstance()
+            //设置默认的日期
             mYear = c.get(Calendar.YEAR)
             mMonth = c.get(Calendar.MONTH)
             mDay = c.get(Calendar.DATE)
             val datePicker = DatePickerDialog(
                 this,
                 DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-
+                    //获取到选择的日期
                     c.set(year, month, dayOfMonth)
                     beginDate = c.time
                     btn_begin.text =
                         year.toString() + "-" + (month + 1).toString() + "-" + dayOfMonth.toString()
                 }, mYear, mMonth, mDay
             )
+            //把该日期组件展示出来
             datePicker.show()
         }
 
@@ -73,7 +78,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         btn_query.setOnClickListener {
-
             println("beginDate:" + beginDate)
             println("endDate:" + endDate)
             //读出数据库中的数据，并把其展示在图形上
@@ -103,9 +107,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //重写的点击事件
     override fun onClick(v: View?) {
+        //跳转到SecondActivity页面
         val intent = Intent(this, SecondActivity::class.java)
-
         //传参数给secondactivity，在另一个页面通过“key”来获取“ok”值
         //intent.putExtra("key","ok")
         startActivity(intent)
@@ -126,16 +131,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         val series = LineGraphSeries(array)
 
-        // set date label formatter
-//        var begin=beginDate.stringFormat("yyyy-mm-dd")
-//        var end=endDate.stringFormat("yyyy-mm-dd")
-//        println()
-//        var formatter= StaticLabelsFormatter(graph)
-//        var san = arrayOf(begin,"",end,"")
-//        formatter.setHorizontalLabels(san)
-//        graph.gridLabelRenderer.labelFormatter=formatter
-
-
         graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(this)
         graph.gridLabelRenderer.numHorizontalLabels = 3 // only 4 because of the space
         graph.gridLabelRenderer.numVerticalLabels = 3
@@ -145,9 +140,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         graph.viewport.setMinX(beginDate.time.toDouble())
         graph.viewport.setMaxX(endDate.time.toDouble())
         graph.viewport.isXAxisBoundsManual = true
-//        graph.viewport.setMinY(0.0)
-//        graph.viewport.setMaxY(1000.0)
-//        graph.viewport.isYAxisBoundsManual = true
         return series
 
     }
@@ -155,6 +147,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     fun Date.stringFormat(formatType:String):String{
         return SimpleDateFormat(formatType).format(this)
     }
-
 
 }

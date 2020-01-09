@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
 
 class MySqlHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "mydb") {
-
     companion object {
         private var instance: MySqlHelper? = null
 
